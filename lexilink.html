@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
+
+    <script src="lexilink.js"></script>
+
+    <title>LexiLink</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="container-fluid bg-info">
+        <p><h1>LexiLink</h1></p>
+      </div>
+      <div class="container-fluid">
+        <p><h2>Clue: WORD 8</h2></p>
+      </div>
+      <table id="mainTable" class="table">
+        <thead>
+          <tr>
+            <th scope="col">You</th>
+            <th scope="col">Word</th>
+            <th scope="col">Your Partner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><i class="far fa-dot-circle"></i></td>
+            <td>WORD</td>
+            <td><button type="button" class="btn btn-primary"><i class="far fa-question-circle"></i></button></td>
+          </tr>
+          <tr>
+            <td>What</td>
+            <td>ANOTHERWORD</td>
+            <td>yay</td>
+          </tr>
+          <tr>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      $(document).ready(function() {
+        fillWords(pickWords(25));
+        pickGame();
+      });
+    </script>
+  </body>
+</html>
