@@ -47,6 +47,17 @@ function pickGame() {
 	return game;
 }
 
+function setupGameFor(game, playerIdx) {
+	console.log("Setting up for " + playerIdx);
+	// my buttons
+	game.players[playerIdx].green.forEach(function(idx) {
+		$('#my' + idx).html("<i class='far fa-dot-circle'></i>");
+	});
+	game.players[playerIdx].assassins.forEach(function(idx) {
+		$('#my' + idx).html("<i class='far fa-times-circle'></i>");
+	});
+}
+
 function fillWords(words) {
 	words.forEach(function(word, index) {
 		$("<tr><td id='my" + index + "'></td><td id='word" + index + "'>" + word + "</td><td id='other" + index +"'</td></tr>").appendTo("#mainTable");

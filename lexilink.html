@@ -20,6 +20,12 @@
 
     <script src="lexilink.js"></script>
 
+    <style>
+    html {
+      font-size: 12px;
+    }
+    </style>
+
     <title>LexiLink</title>
   </head>
   <body>
@@ -30,30 +36,15 @@
       <div class="container-fluid">
         <p><h2>Clue: WORD 8</h2></p>
       </div>
-      <table id="mainTable" class="table">
+      <table id="mainTable" class="table table-sm">
         <thead>
           <tr>
             <th scope="col">You</th>
             <th scope="col">Word</th>
-            <th scope="col">Your Partner</th>
+            <th scope="col">Partner</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><i class="far fa-dot-circle"></i></td>
-            <td>WORD</td>
-            <td><button type="button" class="btn btn-primary"><i class="far fa-question-circle"></i></button></td>
-          </tr>
-          <tr>
-            <td>What</td>
-            <td>ANOTHERWORD</td>
-            <td>yay</td>
-          </tr>
-          <tr>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
         </tbody>
       </table>
     </div>
@@ -61,7 +52,8 @@
     <script>
       $(document).ready(function() {
         fillWords(pickWords(25));
-        pickGame();
+        var game = pickGame();
+        setupGameFor(game, 0);
       });
     </script>
   </body>
