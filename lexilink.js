@@ -2,7 +2,7 @@ function loadWordList() {
 	var wordList;
 
 	$.ajax({
-            url : "lexilink.txt",
+            url : "wordlist.txt",
             dataType: "text",
             success : function (data) {
             	wordList = data.split("\n");
