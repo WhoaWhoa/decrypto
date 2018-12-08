@@ -79,7 +79,11 @@ function getWords() {
 	}
 }
 
-function disableSleep() {
+function enableFullScreen() {
+	if (screenfull.enabled) {
+		screenfull.request();
+	}
+
 	new NoSleep().enable();
 }
 
@@ -88,7 +92,8 @@ function startNewGame() {
 }
 
 function initialize() {
-	$('#wakeLockModal').modal('show');
+	$('#fullScreenModal').modal('show');
+
 	if (loadGame()) {
 		setWords(loadGame());
 	} else {

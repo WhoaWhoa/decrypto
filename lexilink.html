@@ -23,6 +23,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/nosleep/0.6.0/NoSleep.min.js" integrity="sha256-8gSB9ESo2/0hMlNuROxLSbZhQI6Enq/cMOPhiQO17bc=" crossorigin="anonymous"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/screenfull@3.3.3/dist/screenfull.min.js"></script>
+
     <script src="lexilink.js"></script>
 
     <title>CodeWords</title>
@@ -139,21 +141,21 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="wakeLockModal" tabindex="-1" role="dialog" aria-labelledby="wakeLockModalLabel" aria-hidden="true">
+<div class="modal fade" id="fullScreenModal" tabindex="-1" role="dialog" aria-labelledby="fullScreenModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="wakeLockModalLabel">Keep Screen On?</h5>
+        <h5 class="modal-title" id="fullScreenModalLabel">Full Screen Mode</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Do you want to disable the screensaver?
+        Enable full screen mode?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="disableSleep()">Yes (Recommended)</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="enableFullScreen()">Yes (Recommended)</button>
       </div>
     </div>
   </div>
