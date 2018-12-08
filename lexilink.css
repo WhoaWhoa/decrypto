@@ -1,0 +1,24 @@
+html {
+	font-size: 12px;
+}
+
+.button {
+	vertical-align:center;
+}
+
+.cluenumber {
+	text-align: center;
+	font-weight: bold;
+}
+
+.cluebody {
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+.codebody {
+	text-align: center;
+	font-weight: bold;
+	font-size: 3em;
+}
