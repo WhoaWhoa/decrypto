@@ -1,4 +1,4 @@
-function getWordList() {
+function loadWordList() {
 	var wordList;
 
 	$.ajax({
@@ -14,7 +14,7 @@ function getWordList() {
 }
 
 function pickWords(numWords) {
-	var wordList = _.sample(getWordList(), numWords);
+	var wordList = _.sample(loadWordList(), numWords);
 	console.log(wordList);
 	return wordList;
 }
@@ -79,14 +79,19 @@ function getWords() {
 	}
 }
 
-function loadOrNewGame() {
-	var wordList = loadGame();
-	if (!wordList) {
-		wordList = newGame();
-	}
-	return wordList;
+function disableSleep() {
+	new NoSleep().enable();
 }
 
-function setupGame() {
-	setWords(loadOrNewGame());
+function startNewGame() {
+	setWords(newGame());
+}
+
+function initialize() {
+	$('#wakeLockModal').modal('show');
+	if (loadGame()) {
+		setWords(loadGame());
+	} else {
+		setWords(['?', '?', '?', '?']);
+	}
 }

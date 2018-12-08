@@ -12,7 +12,6 @@
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -22,16 +21,27 @@
 
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nosleep/0.6.0/NoSleep.min.js" integrity="sha256-8gSB9ESo2/0hMlNuROxLSbZhQI6Enq/cMOPhiQO17bc=" crossorigin="anonymous"></script>
+
     <script src="lexilink.js"></script>
 
     <title>CodeWords</title>
   </head>
   <body>
     <div class="container-fluid">
-      <div class="container-fluid bg-info">
-        <p><h3>CodeWords</h3></p>
-      </div>
       <div class="container-fluid">
+        <div class="row">
+          <div class="col-8 bg-info">
+            <p><h3>CodeWords</h3></p>
+          </div>
+          <div class="col-4">
+            <button type="button" class="btn-lg btn-primary align-baseline float-right my-3" data-toggle="modal" data-target="#newGameModal">
+              New Game
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid my-5">
         <div class="row">
           <div class="col-sm-3">
             <div class="card">
@@ -87,12 +97,12 @@
           </div>
         </div>
       </div>
-      <hr />
       <div class="container-fluid">
         <div class="row">
-          <div class="col-1">
-            <div class="dropdown">
-              <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <div class="col-12">
+            <div class="float-right">
+            <div class="dropdown">              
+              <button class="btn btn-primary btn-lg dropdown-toggle my-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Code
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -102,8 +112,52 @@
             </div>
           </div>
         </div>
+        </div>
+      </div>
+      <hr />
+
+
+<!-- Modal -->
+<div class="modal fade" id="newGameModal" tabindex="-1" role="dialog" aria-labelledby="newGameModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newGameModalLabel">New Game</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you want to start a new game?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="startNewGame()">Start New Game</button>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="wakeLockModal" tabindex="-1" role="dialog" aria-labelledby="wakeLockModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="wakeLockModalLabel">Keep Screen On?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you want to disable the screensaver?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="disableSleep()">Yes (Recommended)</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <!-- Modal -->
@@ -152,11 +206,9 @@
     </div>
   </div>
 </div>
-
     <script>
       $(document).ready(function() {
-        console.log("hey");
-        setupGame();
+        initialize();
       });
     </script>
   </body>
