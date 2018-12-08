@@ -9,7 +9,6 @@ function loadWordList() {
             },
             async: false
         });
-	console.log(wordList);
 	return wordList;
 }
 
@@ -63,6 +62,7 @@ function loadGame() {
 function newGame() {
 	var wordList = pickWords(4);
 	Cookies.set("wordList", wordList);
+	Cookies.remove("code");
 	return wordList;
 }
 
@@ -72,7 +72,6 @@ function getWords() {
 		console.log("loaded from cookie")
 		return wordList;
 	} else {
-		console.log("no cookie");
 		wordList = pickWords(4);
 		Cookies.set("wordList", wordList);
 		return wordList;
