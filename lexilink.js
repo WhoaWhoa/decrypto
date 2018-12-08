@@ -1,7 +1,4 @@
 function getWordList() {
-
-	console.log("hi");
-
 	var wordList;
 
 	$.ajax({
@@ -14,7 +11,7 @@ function getWordList() {
         });
 	console.log(wordList);
 	return wordList;
-};
+}
 
 function pickWords(numWords) {
 	var wordList = _.sample(getWordList(), numWords);
@@ -22,44 +19,74 @@ function pickWords(numWords) {
 	return wordList;
 }
 
-function pickGame() {
-	var indexArray = _.shuffle(_.range(25));
+function generateCode() {
+	var code = _.sample([1,2,3,4], 3);
+	Cookies.set("code", code);
+	revealCode();
+}
 
-	var game = {
-		players: [{
-			green: indexArray.slice(0,9),
-			assassins: [indexArray[13], indexArray[14], indexArray[15]]
-		},
-		{
-			green: indexArray.slice(6,14),
-			assassins: [indexArray[0], indexArray[14], indexArray[20]]
-		}],
-		history: [
-/* example */
-			{ 
-				guesser: 1,
- 				clue: { word: "BLAHBLAH", limit: 2 },
- 				guesses: [2, 3, 9]
-			}
-		]
+function revealCode() {
+	var code = Cookies.getJSON("code");
+	if (!code) {
+		code = ['?', '?', '?'];
 	}
-	console.log(game);
-	return game;
+	showCodeModal(code);
 }
 
-function setupGameFor(game, playerIdx) {
-	console.log("Setting up for " + playerIdx);
-	// my buttons
-	game.players[playerIdx].green.forEach(function(idx) {
-		$('#my' + idx).html("<i class='far fa-dot-circle'></i>");
-	});
-	game.players[playerIdx].assassins.forEach(function(idx) {
-		$('#my' + idx).html("<i class='far fa-times-circle'></i>");
-	});
+function showCodeModal(code) {
+	for(idx = 0; idx < 3; idx++) {
+		$('#code' + idx).text(code[idx]);
+	}
+	$('#codeModal').modal('show');	
 }
 
-function fillWords(words) {
-	words.forEach(function(word, index) {
-		$("<tr><td id='my" + index + "'></td><td id='word" + index + "'>" + word + "</td><td id='other" + index +"'</td></tr>").appendTo("#mainTable");
-	});
+
+function setWord(word, idx) {
+	$('#word' + idx).text(word);
+}
+
+function setWords(wordList) {
+	for(idx = 0; idx < 4; idx++) {
+		setWord(wordList[idx], idx);
+	}
+}
+
+function loadGame() {
+	var wordList = Cookies.getJSON("wordList");
+	if (wordList) {
+		return wordList;
+	} else {
+		return null;
+	}
+}
+
+function newGame() {
+	var wordList = pickWords(4);
+	Cookies.set("wordList", wordList);
+	return wordList;
+}
+
+function getWords() {
+	var wordList = Cookies.getJSON("wordList");
+	if (wordList) {
+		console.log("loaded from cookie")
+		return wordList;
+	} else {
+		console.log("no cookie");
+		wordList = pickWords(4);
+		Cookies.set("wordList", wordList);
+		return wordList;
+	}
+}
+
+function loadOrNewGame() {
+	var wordList = loadGame();
+	if (!wordList) {
+		wordList = newGame();
+	}
+	return wordList;
+}
+
+function setupGame() {
+	setWords(loadOrNewGame());
 }

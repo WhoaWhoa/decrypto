@@ -8,6 +8,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="lexilink.css">
+
     <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
@@ -18,42 +20,143 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
     <script src="lexilink.js"></script>
 
-    <style>
-    html {
-      font-size: 12px;
-    }
-    </style>
-
-    <title>LexiLink</title>
+    <title>CodeWords</title>
   </head>
   <body>
     <div class="container-fluid">
       <div class="container-fluid bg-info">
-        <p><h1>LexiLink</h1></p>
+        <p><h3>CodeWords</h3></p>
       </div>
       <div class="container-fluid">
-        <p><h2>Clue: WORD 8</h2></p>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="card">
+              <div class="card-header bg-primary">
+                <div class="cluenumber">
+                  1
+                </div>
+              </div>
+              <div class="body">
+                <div class="cluebody" id="word0">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card">
+              <div class="card-header bg-primary">
+                <div class="cluenumber">
+                  2
+                </div>
+              </div>
+              <div class="body">
+                <div class="cluebody" id="word1">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card">
+              <div class="card-header bg-primary">
+                <div class="cluenumber">
+                  3
+                </div>
+              </div>
+              <div class="body">
+                <div class="cluebody" id="word2">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card">
+              <div class="card-header bg-primary">
+                <div class="cluenumber">
+                  4
+                </div>
+              </div>
+              <div class="body">
+                <div class="cluebody" id="word3">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <table id="mainTable" class="table table-sm">
-        <thead>
-          <tr>
-            <th scope="col">You</th>
-            <th scope="col">Word</th>
-            <th scope="col">Partner</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
+      <hr />
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-1">
+            <div class="dropdown">
+              <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Code
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#" onclick="revealCode()">Reveal code</a>
+                <a class="dropdown-item" href="#" onclick="generateCode()">Generate new code</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="codeModal" tabindex="-1" role="dialog" aria-labelledby="codeModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="codeModalLongTitle">Code</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-4">
+              <div class="card">
+                <div class="body">
+                  <div class="codebody" id="code0">
+                  </div>
+                </div>                
+              </div>
+            </div>            
+            <div class="col-4">
+              <div class="card">
+                <div class="body">
+                  <div class="codebody" id="code1">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="card">
+                <div class="body">
+                  <div class="codebody" id="code2">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <script>
       $(document).ready(function() {
-        fillWords(pickWords(25));
-        var game = pickGame();
-        setupGameFor(game, 0);
+        console.log("hey");
+        setupGame();
       });
     </script>
   </body>
