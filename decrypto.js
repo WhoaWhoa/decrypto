@@ -78,12 +78,16 @@ function getWords() {
 	}
 }
 
-function enableFullScreen() {
-	if (screenfull.enabled) {
+function toggleFullScreen() {
+	if (screenfull.isFullscreen) {
+		screenfull.exit();
+		$('#enableFullScreen').show();
+		$('#disableFullScreen').hide();
+	} else {
 		screenfull.request();
+		$('#enableFullScreen').hide();
+		$('#disableFullScreen').show();
 	}
-
-	new NoSleep().enable();
 }
 
 function startNewGame() {
@@ -91,11 +95,21 @@ function startNewGame() {
 }
 
 function initialize() {
-	$('#fullScreenModal').modal('show');
+	var noSleep = new NoSleep();
 
 	if (loadGame()) {
 		setWords(loadGame());
 	} else {
 		setWords(['?', '?', '?', '?']);
 	}
+
+	if (screenfull.enabled) {
+		screenfull.on('change', () => {
+			if (screenfull.isFullscreen) {
+				noSleep.enable();
+			} else {
+				noSleep.disable();
+			}
+		});
+    }
 }

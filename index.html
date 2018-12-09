@@ -10,7 +10,8 @@
 
     <link rel="stylesheet" href="decrypto.css">
 
-    <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
@@ -101,8 +102,8 @@
       </div>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-12">
-            <div class="float-right">
+          <div class="col-6">
+            <div class="float-left">
             <div class="dropdown">              
               <button class="btn btn-primary btn-lg dropdown-toggle my-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Code
@@ -114,10 +115,17 @@
             </div>
           </div>
         </div>
+          <div class="col-6">
+            <div class="float-right">
+              <button class="btn btn-primary btn-lg my-3" type="button" id="fullScreenButton" onclick="toggleFullScreen()">
+                <i class="fas fa-expand-arrows-alt" id="enableFullScreen"></i>
+                <i class="fas fa-compress" style="display:none" id="disableFullScreen"></i>
+              </button>
+            </div>
+          </div>
+        </div>
         </div>
       </div>
-      <hr />
-
 
 <!-- Modal -->
 <div class="modal fade" id="newGameModal" tabindex="-1" role="dialog" aria-labelledby="newGameModalLabel" aria-hidden="true">
@@ -126,7 +134,6 @@
       <div class="modal-header">
         <h5 class="modal-title" id="newGameModalLabel">New Game</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
@@ -139,28 +146,6 @@
     </div>
   </div>
 </div>
-
-<!-- Modal -->
-<div class="modal fade" id="fullScreenModal" tabindex="-1" role="dialog" aria-labelledby="fullScreenModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="fullScreenModalLabel">Full Screen Mode</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Enable full screen mode?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="enableFullScreen()">Yes (Recommended)</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 <!-- Modal -->
 <div class="modal fade" id="codeModal" tabindex="-1" role="dialog" aria-labelledby="codeModalCenterTitle" aria-hidden="true">
