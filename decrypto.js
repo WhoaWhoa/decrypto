@@ -1,3 +1,5 @@
+var wordList;
+
 function loadWordList() {
 	var wordList;
 
@@ -13,69 +15,48 @@ function loadWordList() {
 }
 
 function pickWords(numWords) {
-	var wordList = _.sample(loadWordList(), numWords);
-	console.log(wordList);
-	return wordList;
+	return _.sample(wordList, numWords);
 }
 
 function generateCode() {
 	var code = _.sample([1,2,3,4], 3);
 	Cookies.set("code", code);
-	revealCode();
+	setCode(code);
+	$('#codeModal').modal('show');
 }
 
-function revealCode() {
-	var code = Cookies.getJSON("code");
-	if (!code) {
-		code = ['?', '?', '?'];
-	}
-	showCodeModal(code);
-}
-
-function showCodeModal(code) {
+function setCode(code) {
 	for(idx = 0; idx < 3; idx++) {
 		$('#code' + idx).text(code[idx]);
 	}
-	$('#codeModal').modal('show');	
+	$('#revealCodeButton').show();
 }
 
-
-function setWord(word, idx) {
-	$('#word' + idx).text(word);
-}
-
-function setWords(wordList) {
+function setWords(words) {
 	for(idx = 0; idx < 4; idx++) {
-		setWord(wordList[idx], idx);
+		$('#word' + idx).text(words[idx]);
 	}
 }
 
-function loadGame() {
-	var wordList = Cookies.getJSON("wordList");
-	if (wordList) {
-		return wordList;
+function loadWords() {
+	return Cookies.getJSON("words");
+}
+
+function loadCode() {
+	var code = Cookies.getJSON("code");
+	if (code) {
+		setCode(code);
 	} else {
-		return null;
+		$('#revealCodeButton').hide();
 	}
 }
 
 function newGame() {
-	var wordList = pickWords(4);
-	Cookies.set("wordList", wordList);
+	var words = pickWords(4);
+	Cookies.set("words", words);
 	Cookies.remove("code");
-	return wordList;
-}
-
-function getWords() {
-	var wordList = Cookies.getJSON("wordList");
-	if (wordList) {
-		console.log("loaded from cookie")
-		return wordList;
-	} else {
-		wordList = pickWords(4);
-		Cookies.set("wordList", wordList);
-		return wordList;
-	}
+	$('#revealCodeButton').hide();
+	return words;
 }
 
 function toggleFullScreen() {
@@ -94,14 +75,8 @@ function startNewGame() {
 	setWords(newGame());
 }
 
-function initialize() {
+function initScreenfull() {
 	var noSleep = new NoSleep();
-
-	if (loadGame()) {
-		setWords(loadGame());
-	} else {
-		setWords(['?', '?', '?', '?']);
-	}
 
 	if (screenfull.enabled) {
 		screenfull.on('change', () => {
@@ -112,4 +87,28 @@ function initialize() {
 			}
 		});
     }
+}
+
+function initialize() {
+	initScreenfull();
+
+	wordList = loadWordList();
+	loadCode();
+
+	var words = loadWords();
+
+	if (words) {
+		setWords(words);
+	} else {
+		/*
+		startNewGame();
+		$('#newGameModalCancelButton').hide();
+		$('#newGameModal').modal({
+			show: true,
+			keyboard: false,
+			backdrop: 'static'
+		});
+		*/
+		$('#newGameModal').modal('show');
+	}
 }

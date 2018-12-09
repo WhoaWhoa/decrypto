@@ -55,6 +55,7 @@
               </div>
               <div class="body">
                 <div class="cluebody" id="word0">
+                  ?
                 </div>
               </div>
             </div>
@@ -68,6 +69,7 @@
               </div>
               <div class="body">
                 <div class="cluebody" id="word1">
+                  ?
                 </div>
               </div>
             </div>
@@ -81,6 +83,7 @@
               </div>
               <div class="body">
                 <div class="cluebody" id="word2">
+                  ?
                 </div>
               </div>
             </div>
@@ -94,6 +97,7 @@
               </div>
               <div class="body">
                 <div class="cluebody" id="word3">
+                  ?
                 </div>
               </div>
             </div>
@@ -109,7 +113,7 @@
                 Code
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#" onclick="revealCode()">Reveal code</a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#codeModal" id="revealCodeButton" style:"display:none">Reveal code</a>
                 <a class="dropdown-item" href="#" onclick="generateCode()">Generate new code</a>
               </div>
             </div>
@@ -140,7 +144,7 @@
         Do you want to start a new game?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="newGameModalCancelButton">Cancel</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="startNewGame()">Start New Game</button>
       </div>
     </div>
