@@ -62,13 +62,20 @@ function newGame() {
 function toggleFullScreen() {
 	if (screenfull.isFullscreen) {
 		screenfull.exit();
-		$('#enableFullScreen').show();
-		$('#disableFullScreen').hide();
 	} else {
 		screenfull.request();
+	}
+	setFullScreenIcon();
+}
+
+function setFullScreenIcon() {
+    if (screenfull.isFullscreen) {
 		$('#enableFullScreen').hide();
 		$('#disableFullScreen').show();
-	}
+    } else {
+		$('#enableFullScreen').show();
+		$('#disableFullScreen').hide();
+    }
 }
 
 function startNewGame() {
@@ -86,7 +93,11 @@ function initScreenfull() {
 				noSleep.disable();
 			}
 		});
+    } else {
+        $('#fullScreenButton').hide();
     }
+
+    setInterval(setFullScreenIcon, 200);
 }
 
 function initialize() {
