@@ -82,6 +82,11 @@ function startNewGame() {
 	setWords(newGame());
 }
 
+function disableScreenLock() {
+	var noSleep = new NoSleep();
+	noSleep.enable();
+}
+
 function initScreenfull() {
 	var noSleep = new NoSleep();
 
@@ -93,11 +98,11 @@ function initScreenfull() {
 				noSleep.disable();
 			}
 		});
+        setInterval(setFullScreenIcon, 200);
     } else {
         $('#fullScreenButton').hide();
+        $('#disableScreenLockModal').modal('show');
     }
-
-    setInterval(setFullScreenIcon, 200);
 }
 
 function initialize() {
