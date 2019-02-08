@@ -17,6 +17,13 @@ html {
 	font-size: 1.5em;
 }
 
+.modal-backdrop {
+	/* make background black for modals
+	   (ideally would make it just for code reveals) */
+
+	opacity: 1.0 !important;
+}
+
 .codebody {
 	text-align: center;
 	font-weight: bold;
